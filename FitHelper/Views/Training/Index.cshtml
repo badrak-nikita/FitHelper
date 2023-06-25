@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FitHelper.Models.Training>
+
+@{
+    ViewData["Title"] = "Тренування";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+<partial name="_Header" />
+<partial name="_AsideBar" />
+
+<main id="main" class="main">
+    <section class="section dashboard">
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
+                    <!-- Card with an image on left -->
+                    @foreach (var item in Model)
+                    {
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="~/img/gantelya.png" class="img-fluid rounded-start" width="200" height="200" style="text-align:center" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Exercise)</h5>
+                                        <p class="card-text">Кiлькiсть пiдходiв: @Html.DisplayFor(modelItem => item.Approaches)</p>
+                                        <p class="card-text">Кiлькiсть повторювань: @Html.DisplayFor(modelItem => item.Repeats)</p>
+                                        <p class="card-text">@Html.DisplayFor(modelItem => item.Comment)</p>
+                                        <p>
+                                            <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-outline-primary">Редагувати</a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- End Card with an image on left -->
+                </div>
+            </div>
+            <!-- End Left side columns -->
+
+            <!-- Right side columns -->
+            <div class="col-lg-4">
+                <!-- Recent Activity -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@DateTime.Now.ToString("dd/MM/yyyy")</h5>
+                        <p>
+                            <a asp-action="Create" type="button" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Додати вправу</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Right side columns -->
+
+        </div>
+    </section>
+</main>
+
+<partial name="_Footer" />
+}
+else
+{
+<partial name="_UnAuth" />
+}

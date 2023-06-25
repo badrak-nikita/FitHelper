@@ -1,0 +1,145 @@
+﻿IEnumerable<FitHelper.ViewModel.IndicatorViewModel>
+
+@{
+    ViewData["Title"] = "Показники";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+<partial name="_Header" />
+<partial name="_AsideBar" />
+
+<main id="main" class="main">
+    <section class="section">
+        <div class="row align-items-top">
+                    
+            <!-- Calories -->
+            <div class="col-lg-4">
+            <!-- Card with an image on top -->
+            <div class="card">
+                <img src="~/img/calories.png" class="card-img-top" alt="..." height="250px" width="250px">
+                <div class="card-body">
+                    <h5 class="card-title">Калорії</h5>
+                    <p class="card-text">Калорія — це одиниця виміру енергетичної цінності їжі. У фізиці одна калорія рівнозначна кількості енергії, необхідної для нагрівання 1 грама води на 1°C</p>
+                    <p class="card-text">Вжито калорiй сьогоднi: <b>@Model.TotalCalories</b></p>
+                    <div style="display: flex; justify-content: center;">
+                        <a asp-action="AddCalorie" type="button" class="btn btn-success">Додати</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <!-- Table with hoverable rows -->
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Кiлькiсть</th>
+                                <th scope="col">Дата</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Calories)
+                            {
+                            <tr>
+                                <td><span style="color: green">+ @item.Cal</span></td>
+                                <td>@item.DateOfNote</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- End Table with hoverable rows -->
+                </div>
+            </div>
+            <!-- End Card with an image on top -->
+            </div>
+
+            <!-- Water -->
+            <div class="col-lg-4">
+                <!-- Card with an image on top -->
+                <div class="card">
+                    <img src="~/img/water.png" class="card-img-top" alt="..." height="250px" width="250px">
+                    <div class="card-body">
+                        <h5 class="card-title">Вода</h5>
+                        <p class="card-text">Вода — одна із найголовніших речовин, потрібних для органічного життя. Вона володіє унікальними природними властивостями. Життя без неї неможливе</p>
+                        <p class="card-text">Випито води сьогоднi: <b>@Model.TotalLiters л.</b></p>
+                        <div style="display: flex; justify-content: center;">
+                            <a asp-action="AddWater" type="button" class="btn btn-success">Додати</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Table with hoverable rows -->
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Кiлькiсть</th>
+                                    <th scope="col">Дата</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Water)
+                                {
+                                    <tr>
+                                        <td><span style="color: green">+ @item.Liters</span></td>
+                                        <td>@item.DateOfNote</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!-- End Table with hoverable rows -->
+                    </div>
+                </div>
+                <!-- End Card with an image on top -->
+            </div>
+
+            <!-- Steps -->
+            <div class="col-lg-4">
+                <!-- Card with an image on top -->
+                <div class="card">
+                    <img src="~/img/steps.png" class="card-img-top" alt="..." height="250px" width="250px">
+                    <div class="card-body">
+                        <h5 class="card-title">Кроки</h5>
+                        <p class="card-text">Крок - одиниця або спосіб ходи людини або тварин; також певна стала відстань або величина чого-небудь. Запис показника крокiв повинен вiдбуватись саме у кроках, а не у метрах</p>
+                        <p class="card-text">Пройдено крокiв сьогоднi: <b>@Model.TotalSteps</b></p>
+                        <div style="display: flex; justify-content: center;">
+                            <a asp-action="AddStep" type="button" class="btn btn-success">Додати</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Table with hoverable rows -->
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Кiлькiсть</th>
+                                    <th scope="col">Дата</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Steps)
+                                {
+                                    <tr>
+                                        <td><span style="color: green">+ @item.Step</span></td>
+                                        <td>@item.DateOfNote</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!-- End Table with hoverable rows -->
+                    </div>
+                </div>
+                <!-- End Card with an image on top -->
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<partial name="_Footer" />
+}
+else
+{
+<partial name="_UnAuth" />
+}

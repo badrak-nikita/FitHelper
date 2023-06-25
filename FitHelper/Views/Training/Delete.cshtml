@@ -1,0 +1,33 @@
+﻿@model FitHelper.Models.Training
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<main>
+    <div class="container">
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <!-- Default Card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(model => model.Exercise)</h5>
+                                <p class="card-text">Кiлькiсть пiдходiв: @Html.DisplayFor(model => model.Approaches))</p>
+                                <p class="card-text">Кiлькiсть повторювань:  @Html.DisplayFor(model => model.Repeats)</p>
+                                <p class="card-text">@Html.DisplayFor(model => model.Comment)</p>
+                                <form asp-action="Delete">
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="submit" value="Видалити" class="btn btn-danger" /> |
+                                    <a asp-action="Index">Повернутись</a>
+                                </form>
+                            </div> 
+                        </div>
+                        <!-- End Default Card -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

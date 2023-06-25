@@ -1,0 +1,84 @@
+﻿@model FitHelper.Models.User
+
+@{
+    ViewData["Title"] = "Профiль";
+}
+
+<partial name="_Header" />
+<partial name="_AsideBar" />
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Профiль</h1>
+    </div>
+
+    <section class="section profile">
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                            <img src="" alt="Profile" class="rounded-circle">
+                            <h2>@Model.Name</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body pt-3">
+
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Profile" asp-action="Page">Огляд</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" asp-controller="Profile" asp-action="EditProfile">Редагувати</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-pane fade profile-edit pt-3">
+
+                                <!-- Profile Edit Form -->
+                                <form asp-action="EditProfile">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="row mb-3">
+                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Аватар</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <img src="" alt="Profile">
+                                            <div class="pt-2">
+                                                <a href="#" class="btn btn-primary btn-sm" title="Завантажити нове зображення"><i class="bi bi-upload"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm" title="Видалити зображення"><i class="bi bi-trash"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Ел.Пошта</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input type="text" class="form-control" value="@Model.Email">
+                                        </div>
+                                    </div>
+ 
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Зберегти змiни</button>
+                                    </div>
+                                </form>
+                                <!-- End Profile Edit Form -->
+
+                            </div>
+
+                        </div>
+                        <!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+            </div>
+
+    </section>
+</main>
+
+<partial name="_Footer" />

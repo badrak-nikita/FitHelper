@@ -1,0 +1,76 @@
+﻿@model FitHelper.Models.Training
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<main>
+    <div class="container">
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                        <div class="d-flex justify-content-center py-4">
+                            <a asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center w-auto">
+                                <img src="~/img/logo.png" alt="">
+                                <span class="d-none d-lg-block">FitHelper</span>
+                            </a>
+                        </div>
+
+                        <div class="card mb-3">
+
+                            <div class="card-body">
+
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Додання вправи</h5>
+                                    <p class="text-center small">Введіть назву, пiдходи i повторювання вправи</p>
+                                </div>
+
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="col-12">
+                                        <label class="form-label">Назва вправи</label>
+                                        <input asp-for="Exercise" type="text" class="form-control">
+                                        <span asp-validation-for="Exercise" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Кiлькiсть пiдходiв</label>
+                                        <input asp-for="Approaches" type="number" class="form-control">
+                                        <span asp-validation-for="Approaches" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Кiлькiсть повторювань</label>
+                                        <input asp-for="Repeats" type="number" class="form-control">
+                                        <span asp-validation-for="Repeats" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Власний коментар</label>
+                                        <input asp-for="Comment" type="text" class="form-control">
+                                        <span asp-validation-for="Comment" class="text-danger"></span>
+                                    </div>            
+                                    <p></p>
+                                    <div class="col-12">
+                                        <button class="btn btn-success w-100" type="submit">Додати</button>
+                                    </div>
+                                    <p></p>
+                                    <div class="col-12">
+                                        <p class="small mb-0"><a asp-action="Index">Повернутись</a></p>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
